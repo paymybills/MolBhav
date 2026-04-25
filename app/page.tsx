@@ -1,4 +1,5 @@
 import Link from "next/link";
+import NegotiationsDisplay from "../components/NegotiationsDisplay";
 
 export const metadata = {
   title: "MolBhav — the agent that reads the room",
@@ -209,6 +210,8 @@ export default function Home() {
           dominates on every task and closes 100% of deals.
         </p>
       </div>
+
+      <NegotiationsDisplay />
 
       <div className="mb-14 rounded-2xl border border-foreground/10 p-6 bg-foreground/[0.02]">
         <h2 className="text-xl font-semibold mb-3">Runs on your laptop</h2>
