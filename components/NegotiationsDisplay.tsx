@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import GridDistortion from "./GridDistortion";
 
 const negotiations = [
   {
@@ -86,17 +85,7 @@ export default function NegotiationsDisplay() {
   const activeNeg = negotiations.find(n => n.id === activeId)!;
 
   return (
-    <div className="mb-14 relative rounded-3xl overflow-hidden border border-foreground/10" style={{ minHeight: '800px', backgroundColor: '#000' }}>
-      <div className="absolute inset-0 opacity-40 mix-blend-screen pointer-events-auto">
-        <GridDistortion
-          imageSrc="https://picsum.photos/1920/1080?grayscale"
-          grid={15}
-          mouse={0.1}
-          strength={0.15}
-          relaxation={0.9}
-        />
-      </div>
-
+    <div className="mb-14 relative rounded-3xl overflow-hidden border border-foreground/10" style={{ minHeight: '800px', backgroundColor: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(10px)' }}>
       <div className="relative z-10 p-8 flex flex-col md:flex-row h-full gap-8 pointer-events-none">
         
         {/* Sidebar */}

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import GridDistortion from "../components/GridDistortion";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,20 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col relative bg-black text-white">
+        <div className="fixed inset-0 z-[-1] pointer-events-none opacity-30 mix-blend-lighten">
+          <GridDistortion 
+            imageSrc="https://picsum.photos/1920/1080?grayscale"
+            grid={15}
+            mouse={0.1}
+            strength={0.15}
+            relaxation={0.9}
+          />
+        </div>
+        <div className="relative z-10 w-full flex-grow">
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
