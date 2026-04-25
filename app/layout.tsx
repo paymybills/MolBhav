@@ -31,7 +31,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col relative bg-black text-white">
         <div className="fixed inset-0 z-[-1] pointer-events-none opacity-30 mix-blend-lighten">
           <GridDistortion 
-            imageSrc="https://picsum.photos/1920/1080?grayscale"
+            imageSrc="/bg.jpg"
             grid={15}
             mouse={0.1}
             strength={0.15}
