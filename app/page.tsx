@@ -11,16 +11,26 @@ function Stat({
   value,
   label,
   sub,
+  accent = "#A6E22E",
 }: {
   value: string;
   label: string;
   sub?: string;
+  accent?: string;
 }) {
   return (
-    <div className="rounded-2xl border border-foreground/10 bg-foreground/[0.02] p-5">
-      <div className="text-3xl font-bold tracking-tight">{value}</div>
-      <div className="text-sm text-foreground/70 mt-1">{label}</div>
-      {sub ? <div className="text-xs text-foreground/40 mt-2">{sub}</div> : null}
+    <div 
+      className="group rounded-3xl border border-white/10 bg-black/40 backdrop-blur-md p-6 transition-all duration-300 hover:border-transparent hover:-translate-y-2 hover:shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)] relative overflow-hidden"
+    >
+      <div 
+        className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+        style={{ background: `radial-gradient(circle at 50% 100%, ${accent}, transparent 60%)` }}
+      />
+      <div className="relative z-10 flex flex-col items-center text-center">
+        <div className="text-4xl font-extrabold tracking-tight mb-2 drop-shadow-md" style={{ color: accent }}>{value}</div>
+        <div className="text-sm font-semibold tracking-wide text-white/90 uppercase">{label}</div>
+        {sub ? <div className="text-xs text-white/50 mt-3 font-mono">{sub}</div> : null}
+      </div>
     </div>
   );
 }
@@ -29,16 +39,28 @@ function Pillar({
   n,
   title,
   body,
+  accent = "#66D9EF"
 }: {
   n: string;
   title: string;
   body: React.ReactNode;
+  accent?: string;
 }) {
   return (
-    <div className="rounded-2xl border border-foreground/10 p-6 hover:border-foreground/20 transition">
-      <div className="text-xs font-mono text-foreground/40 mb-2">PILLAR {n}</div>
-      <div className="text-lg font-semibold mb-2">{title}</div>
-      <div className="text-sm text-foreground/70 leading-relaxed">{body}</div>
+    <div className="group rounded-3xl border border-white/10 bg-black/40 backdrop-blur-md p-8 transition-all duration-300 hover:-translate-y-2 hover:border-white/20 hover:shadow-2xl relative overflow-hidden">
+      <div 
+        className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none"
+        style={{ background: `linear-gradient(to bottom right, ${accent}, transparent)` }}
+      />
+      <div 
+        className="absolute top-0 left-0 w-full h-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_0_15px_rgba(255,255,255,0.5)]"
+        style={{ backgroundColor: accent, boxShadow: `0 0 15px ${accent}` }}
+      />
+      <div className="relative z-10">
+        <div className="text-xs font-mono font-bold mb-4 tracking-widest uppercase" style={{ color: accent }}>PILLAR {n}</div>
+        <div className="text-2xl font-bold mb-3 text-white tracking-tight">{title}</div>
+        <div className="text-sm text-foreground/80 leading-relaxed font-medium">{body}</div>
+      </div>
     </div>
   );
 }
@@ -46,20 +68,22 @@ function Pillar({
 export default function Home() {
   return (
     <div className="max-w-5xl mx-auto px-4 py-12">
-      <div className="mb-14">
-        <div className="text-xs font-mono text-foreground/40 mb-3">
+      <div className="mb-20 text-center flex flex-col items-center">
+        <div className="text-xs font-mono text-[#E6DB74] bg-[#E6DB74]/10 border border-[#E6DB74]/20 px-3 py-1 rounded-full mb-6 inline-block backdrop-blur-sm">
           OPENENV HACKATHON · APR 2026
         </div>
-        <h1 className="text-6xl font-bold tracking-tight mb-4">MolBhav</h1>
-        <p className="text-xl text-foreground/70 max-w-3xl leading-relaxed">
+        <h1 className="text-7xl font-extrabold tracking-tight mb-6 bg-gradient-to-br from-[#F92672] via-[#AE81FF] to-[#66D9EF] text-transparent bg-clip-text drop-shadow-[0_0_15px_rgba(249,38,114,0.3)]">
+          MolBhav
+        </h1>
+        <p className="text-xl text-white/80 max-w-3xl leading-relaxed font-medium">
           A negotiation agent that reads what the seller{" "}
-          <em>doesn&apos;t say</em>. Poker-style tells, Bayesian steering, and
+          <em className="text-[#A6E22E] italic font-semibold">doesn&apos;t say</em>. Poker-style tells, Bayesian steering, and
           a full RL stack that runs on a 7&nbsp;GB consumer GPU.
         </p>
         <div className="mt-6 flex gap-3 flex-wrap">
           <a
             href="#results"
-            className="px-4 py-2 rounded-lg bg-foreground text-background text-sm font-medium hover:opacity-90"
+            className="px-6 py-3 rounded-full bg-[#F92672] text-white text-sm font-semibold hover:bg-[#F92672]/90 shadow-[0_0_20px_rgba(249,38,114,0.3)] hover:shadow-[0_0_30px_rgba(249,38,114,0.5)] transition-all hover:-translate-y-0.5"
           >
             See results
           </a>
@@ -67,7 +91,7 @@ export default function Home() {
             href="https://github.com/paymybills/MolBhav"
             target="_blank"
             rel="noreferrer"
-            className="px-4 py-2 rounded-lg border border-foreground/20 text-sm hover:bg-foreground/5"
+            className="px-6 py-3 rounded-full border border-white/20 text-sm font-semibold hover:bg-white/10 backdrop-blur-sm transition-all hover:-translate-y-0.5 box-content"
           >
             GitHub →
           </a>
@@ -79,14 +103,10 @@ export default function Home() {
           Headline results
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <Stat
-            value="+131%"
-            label="surplus vs rule-based"
-            sub="amazon_realistic"
-          />
-          <Stat value="+916%" label="on read_the_tells" sub="0.041 → 0.418" />
-          <Stat value="100%" label="deal rate" sub="all 3 task suites" />
-          <Stat value="7 GB" label="total GPU footprint" sub="RTX 2050 class" />
+          <Stat value="+131%" label="surplus vs rule-based" sub="amazon_realistic" accent="#A6E22E" />
+          <Stat value="+916%" label="on read_the_tells" sub="0.041 → 0.418" accent="#F92672" />
+          <Stat value="100%" label="deal rate" sub="all 3 task suites" accent="#66D9EF" />
+          <Stat value="7 GB" label="total GPU footprint" sub="RTX 2050 class" accent="#E6DB74" />
         </div>
       </div>
 
@@ -114,9 +134,10 @@ export default function Home() {
           <Pillar
             n="01"
             title="NLP Tell Extractor"
+            accent="#F92672"
             body={
               <>
-                <span className="font-mono text-xs">ministral-3:3b</span> reads
+                <span className="font-mono text-xs text-[#F92672] bg-[#F92672]/10 px-1 rounded">ministral-3:3b</span> reads
                 each seller turn and emits 12 calibrated signals. Hinglish,
                 English, and condition keywords all handled. Distinguishes
                 genuine impatience from fake urgency.
@@ -126,6 +147,7 @@ export default function Home() {
           <Pillar
             n="02"
             title="Bayesian Steering"
+            accent="#66D9EF"
             body={
               <>
                 Post-hoc filter over the LLM buyer&apos;s raw action using a
@@ -137,6 +159,7 @@ export default function Home() {
           <Pillar
             n="03"
             title="Synthetic Indian C2C Data"
+            accent="#E6DB74"
             body={
               <>
                 500 generated Hinglish WhatsApp-style negotiations: 485 deals,
@@ -148,12 +171,13 @@ export default function Home() {
           <Pillar
             n="04"
             title="DPO Self-Improvement"
+            accent="#A6E22E"
             body={
               <>
                 Rule-based judge classifies failure modes
                 (accepted-too-fast, walked-with-room, missed-deception).
                 Repaired turns become DPO chosen pairs. Trained with{" "}
-                <span className="font-mono text-xs">trl.DPOTrainer</span> on
+                <span className="font-mono text-xs text-[#A6E22E] bg-[#A6E22E]/10 px-1 rounded">trl.DPOTrainer</span> on
                 the buyer base.
               </>
             }
@@ -163,44 +187,44 @@ export default function Home() {
 
       <div className="mb-14">
         <h2 className="text-2xl font-semibold mb-4">Eval (n=20 per task)</h2>
-        <div className="overflow-x-auto rounded-2xl border border-foreground/10">
+        <div className="overflow-x-auto rounded-3xl border border-white/10 bg-black/40 backdrop-blur-xl shadow-2xl">
           <table className="w-full text-sm">
-            <thead className="bg-foreground/[0.03]">
-              <tr className="text-left">
-                <th className="px-4 py-3 font-medium">Policy</th>
-                <th className="px-4 py-3 font-medium">amazon_realistic</th>
-                <th className="px-4 py-3 font-medium">read_the_tells</th>
-                <th className="px-4 py-3 font-medium">career_10</th>
-                <th className="px-4 py-3 font-medium">deal rate</th>
+            <thead className="bg-[#1E1E1E]/80 border-b border-white/10">
+              <tr className="text-left text-white/50 tracking-wide uppercase text-xs">
+                <th className="px-6 py-4 font-medium">Policy</th>
+                <th className="px-6 py-4 font-medium">amazon_realistic</th>
+                <th className="px-6 py-4 font-medium">read_the_tells</th>
+                <th className="px-6 py-4 font-medium">career_10</th>
+                <th className="px-6 py-4 font-medium">deal rate</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-foreground/10">
-              <tr>
-                <td className="px-4 py-3 text-foreground/60">rule_based</td>
-                <td className="px-4 py-3 font-mono">0.396</td>
-                <td className="px-4 py-3 font-mono">0.041</td>
-                <td className="px-4 py-3 font-mono">0.805</td>
-                <td className="px-4 py-3 font-mono text-foreground/50">
+            <tbody className="divide-y divide-white/5">
+              <tr className="hover:bg-white/5 transition-colors">
+                <td className="px-6 py-4 text-white/60">rule_based</td>
+                <td className="px-6 py-4 font-mono">0.396</td>
+                <td className="px-6 py-4 font-mono text-[#F92672]">0.041</td>
+                <td className="px-6 py-4 font-mono">0.805</td>
+                <td className="px-6 py-4 font-mono text-white/40">
                   95 / 5 / 100
                 </td>
               </tr>
-              <tr>
-                <td className="px-4 py-3 text-foreground/60">
+              <tr className="hover:bg-white/5 transition-colors">
+                <td className="px-6 py-4 text-white/60">
                   baseline llama3.2:3b
                 </td>
-                <td className="px-4 py-3 font-mono">0.234</td>
-                <td className="px-4 py-3 font-mono">0.308</td>
-                <td className="px-4 py-3 font-mono">0.705</td>
-                <td className="px-4 py-3 font-mono text-foreground/50">
+                <td className="px-6 py-4 font-mono text-[#F92672]">0.234</td>
+                <td className="px-6 py-4 font-mono">0.308</td>
+                <td className="px-6 py-4 font-mono text-[#F92672]">0.705</td>
+                <td className="px-6 py-4 font-mono text-white/40">
                   100 / 65 / 100
                 </td>
               </tr>
-              <tr className="bg-foreground/[0.04]">
-                <td className="px-4 py-3 font-semibold">bestdealbot</td>
-                <td className="px-4 py-3 font-mono font-semibold">0.913</td>
-                <td className="px-4 py-3 font-mono font-semibold">0.418</td>
-                <td className="px-4 py-3 font-mono font-semibold">0.972</td>
-                <td className="px-4 py-3 font-mono">100 / 100 / 100</td>
+              <tr className="bg-[#66D9EF]/10 border-l-[3px] border-l-[#66D9EF] relative">
+                <td className="px-6 py-4 font-bold text-[#66D9EF] tracking-wide">bestdealbot</td>
+                <td className="px-6 py-4 font-mono font-bold text-white shadow-[0_0_10px_rgba(102,217,239,0.3)]">0.913</td>
+                <td className="px-6 py-4 font-mono font-bold text-white shadow-[0_0_10px_rgba(102,217,239,0.3)]">0.418</td>
+                <td className="px-6 py-4 font-mono font-bold text-white shadow-[0_0_10px_rgba(102,217,239,0.3)]">0.972</td>
+                <td className="px-6 py-4 font-mono text-[#A6E22E] font-semibold">100 / 100 / 100</td>
               </tr>
             </tbody>
           </table>
