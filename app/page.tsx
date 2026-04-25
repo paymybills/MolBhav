@@ -2,7 +2,7 @@ import Link from "next/link";
 import NegotiationsDisplay from "../components/NegotiationsDisplay";
 
 export const metadata = {
-  title: "MolBhav — the agent that reads the room",
+  title: "Sauda — the agent that reads the room",
   description:
     "An OpenEnv-compliant negotiation agent with poker-style tells, Bayesian steering, and a 7GB-GPU stack. Beats LLM baselines by 3x.",
 };
@@ -73,7 +73,7 @@ export default function Home() {
           OPENENV HACKATHON · APR 2026
         </div>
         <h1 className="text-7xl font-extrabold tracking-tight mb-6 bg-gradient-to-br from-[#F92672] via-[#AE81FF] to-[#66D9EF] text-transparent bg-clip-text drop-shadow-[0_0_15px_rgba(249,38,114,0.3)]">
-          MolBhav
+          Sauda
         </h1>
         <p className="text-xl text-white/80 max-w-3xl leading-relaxed font-medium">
           A negotiation agent that reads what the seller{" "}
@@ -88,7 +88,7 @@ export default function Home() {
             See results
           </a>
           <a
-            href="https://github.com/paymybills/MolBhav"
+            href="https://github.com/paymybills/Sauda"
             target="_blank"
             rel="noreferrer"
             className="px-6 py-3 rounded-full border border-white/20 text-sm font-semibold hover:bg-white/10 backdrop-blur-sm transition-all hover:-translate-y-0.5 box-content"
@@ -114,7 +114,7 @@ export default function Home() {
         <h2 className="text-2xl font-semibold mb-4">What it is</h2>
         <div className="text-foreground/70 leading-relaxed space-y-3 max-w-3xl">
           <p>
-            MolBhav is an{" "}
+            Sauda is an{" "}
             <span className="font-mono text-sm">OpenEnv</span>-compliant
             FastAPI environment for marketplace negotiation. The buyer agent
             gets text from the seller plus 12 observable <em>tells</em> —
@@ -230,7 +230,7 @@ export default function Home() {
           </table>
         </div>
         <p className="text-xs text-foreground/50 mt-3">
-          Normalized surplus on a [0, 1] scale. Higher is better. MolBhav
+          Normalized surplus on a [0, 1] scale. Higher is better. Sauda
           dominates on every task and closes 100% of deals.
         </p>
       </div>
@@ -270,9 +270,9 @@ export default function Home() {
       </div>
 
       <div className="border-t border-foreground/10 pt-6 text-xs text-foreground/40 flex flex-wrap gap-4 justify-between">
-        <div>MolBhav · OpenEnv hackathon submission · Apr 2026</div>
+        <div>Sauda · OpenEnv hackathon submission · Apr 2026</div>
         <Link
-          href="https://github.com/paymybills/MolBhav"
+          href="https://github.com/paymybills/Sauda"
           className="hover:text-foreground/70"
         >
           github →

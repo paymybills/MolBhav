@@ -14,21 +14,21 @@ const negotiations = [
     surplus: 0.974,
     turns: [
       { role: "Seller", type: "text", content: "7299 rupees for this Crompton Gracee 5-L Instant Water Heater (Geyser). Very fair." },
-      { role: "MolBhav", type: "offer", content: "₹4,697.82" },
+      { role: "Sauda", type: "offer", content: "₹4,697.82" },
       { role: "Seller", type: "text", content: "Okay, 6569. But that's the limit." },
-      { role: "MolBhav", type: "offer", content: "₹4,269.91" },
+      { role: "Sauda", type: "offer", content: "₹4,269.91" },
       { role: "Seller", type: "text", content: "I can do 5839. Not lower. This is the last one I have." },
-      { role: "MolBhav", type: "offer", content: "₹3,795.48" },
+      { role: "Sauda", type: "offer", content: "₹3,795.48" },
       { role: "Seller", type: "text", content: "5109 rupees. That's my best offer. This is the last one I have." },
-      { role: "MolBhav", type: "offer", content: "₹3,321.05" },
+      { role: "Sauda", type: "offer", content: "₹3,321.05" },
       { role: "Seller", type: "text", content: "4379 rupees. That's my best offer." },
-      { role: "MolBhav", type: "offer", content: "₹2,846.61" },
+      { role: "Sauda", type: "offer", content: "₹2,846.61" },
       { role: "Seller", type: "text", content: "I can do 3650. Not lower." },
-      { role: "MolBhav", type: "offer", content: "₹2,372.18" },
+      { role: "Sauda", type: "offer", content: "₹2,372.18" },
       { role: "Seller", type: "text", content: "I can do 2920. Not lower." },
-      { role: "MolBhav", type: "offer", content: "₹2,540.05" },
+      { role: "Sauda", type: "offer", content: "₹2,540.05" },
       { role: "Seller", type: "text", content: "2645 rupees. That's my best offer." },
-      { role: "MolBhav", type: "accept", content: null },
+      { role: "Sauda", type: "accept", content: null },
       { role: "Seller", type: "text", content: "You accept the seller's offer of 2645 rupees." },
     ]
   },
@@ -43,9 +43,9 @@ const negotiations = [
     surplus: 0.483,
     turns: [
       { role: "Seller", type: "text", content: "This handwoven silk scarf is selling fast. 76, and honestly I'm losing money at that." },
-      { role: "MolBhav", type: "offer", content: "₹66.03" },
+      { role: "Sauda", type: "offer", content: "₹66.03" },
       { role: "Seller", type: "text", content: "66... you know, I shouldn't even go this low. My cousin told me someone offered more yesterday." },
-      { role: "MolBhav", type: "accept", content: null },
+      { role: "Sauda", type: "accept", content: null },
       { role: "Seller", type: "text", content: "You accept the seller's offer of 66 rupees." },
     ]
   },
@@ -60,21 +60,21 @@ const negotiations = [
     surplus: 0.979,
     turns: [
       { role: "Seller", type: "text", content: "60 rupees for this handwoven silk scarf. Very fair." },
-      { role: "MolBhav", type: "offer", content: "₹39.00" },
+      { role: "Sauda", type: "offer", content: "₹39.00" },
       { role: "Seller", type: "text", content: "54 rupees. That's my best offer." },
-      { role: "MolBhav", type: "offer", content: "₹34.91" },
+      { role: "Sauda", type: "offer", content: "₹34.91" },
       { role: "Seller", type: "text", content: "Okay, 47. But that's the limit." },
-      { role: "MolBhav", type: "offer", content: "₹30.81" },
+      { role: "Sauda", type: "offer", content: "₹30.81" },
       { role: "Seller", type: "text", content: "I can do 41. Not lower." },
-      { role: "MolBhav", type: "offer", content: "₹30.00" },
+      { role: "Sauda", type: "offer", content: "₹30.00" },
       { role: "Seller", type: "text", content: "Okay, 35. But that's the limit. This is the last one I have." },
-      { role: "MolBhav", type: "offer", content: "₹30.00" },
+      { role: "Sauda", type: "offer", content: "₹30.00" },
       { role: "Seller", type: "text", content: "I can do 32. Not lower. Someone else was looking at this earlier..." },
-      { role: "MolBhav", type: "offer", content: "₹29.93" },
+      { role: "Sauda", type: "offer", content: "₹29.93" },
       { role: "Seller", type: "text", content: "I can do 32. Not lower." },
-      { role: "MolBhav", type: "offer", content: "₹30.00" },
+      { role: "Sauda", type: "offer", content: "₹30.00" },
       { role: "Seller", type: "text", content: "32 rupees. That's my best offer." },
-      { role: "MolBhav", type: "accept", content: null },
+      { role: "Sauda", type: "accept", content: null },
       { role: "Seller", type: "text", content: "You accept the seller's offer of 32 rupees." },
     ]
   }
@@ -134,11 +134,11 @@ export default function NegotiationsDisplay() {
             {/* Content */}
             <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-thin scrollbar-thumb-[#3E3D32] scrollbar-track-transparent">
               {activeNeg.turns.map((turn, i) => {
-                const isMolBhav = turn.role === "MolBhav";
+                const isSauda = turn.role === "Sauda";
                 return (
-                  <div key={i} className={`flex flex-col ${isMolBhav ? "items-end" : "items-start"}`}>
+                  <div key={i} className={`flex flex-col ${isSauda ? "items-end" : "items-start"}`}>
                     <div className="text-xs font-mono mb-1 text-[#75715E] flex items-center gap-2">
-                      {isMolBhav ? (
+                      {isSauda ? (
                         <>
                           <span className="opacity-50">sys.action</span> 
                           <span className="text-[#66D9EF] tracking-wider">{turn.role}</span>
@@ -152,11 +152,11 @@ export default function NegotiationsDisplay() {
                     </div>
                     
                     <div className={`max-w-[85%] rounded-lg p-3 font-mono text-sm leading-relaxed ${
-                      isMolBhav 
+                      isSauda 
                         ? 'bg-[#3E3D32]/50 border border-[#66D9EF]/20 text-[#F8F8F2]' 
                         : 'bg-[#1E1E1E]/80 border border-[#A6E22E]/20 text-[#A6E22E]'
                     }`}>
-                      {isMolBhav ? (
+                      {isSauda ? (
                         <div>
                           <span className="text-[#F92672]">{turn.type}</span>
                           {turn.content && (
